@@ -1,15 +1,13 @@
 import Navbar from "./Components/Navbar"
 import Hero from "./Components/Hero"
+import HomeCards from "./Components/HomeCards"
 
 const App = () => {
   return (
     <>
      <Navbar />
-     <Hero titulo={"Conviertete en un desarrollador de React"} 
-     subtitulo={"Encuentra el trabajo de React que se adapte a tus habilidades y necesidades"}
-    />
-
-
+     <Hero titulo={"Conviertete en un desarrollador de React"} subtitulo={"Encuentra el trabajo de React que se adapte a tus habilidades y necesidades"}/>
+    <HomeCards />
     {/*<!-- Browse Jobs -->*/}
     <section className="bg-blue-50 px-4 py-10">
       <div className="container-xl lg:container m-auto">
