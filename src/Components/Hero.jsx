@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Hero = (props) => {
+const Hero = ( props ) => {
   return (
      <section className="bg-indigo-700 py-20 mb-4">
       <div
