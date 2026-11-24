@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import { toast } from "react-toastify"
 
 const AddJobPage = ( {addJobSubmit} ) => {
     const [title, setTitle] = useState('')
@@ -14,23 +15,25 @@ const AddJobPage = ( {addJobSubmit} ) => {
 
     const navigate = useNavigate()
 
-const submitForm = (event) => {
-  event.preventDeFault()
+  const submitForm = (event) => {
+  event.preventDefault()
   const newJob = {
     title,
     type,
     location,
+    description,
     salary,
     company: {
       name: companyName,
       description: companyDescription,
       contactEmail,
-      contactPhone
-    }
+      contactPhone,
+    },
   }
   addJobSubmit(newJob)
-  return navigate(`/jobs`)
-}
+  toast.success("Job añadido correctamente")
+  navigate("/jobs")
+  }
 
   return (
      <section className="bg-indigo-50">

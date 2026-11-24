@@ -2,10 +2,27 @@ import { useParams, useLoaderData } from "react-router"
 import { FaArrowLeft } from "react-icons/fa"
 import { HiLocationMarker } from "react-icons/hi"
 import { Link } from "react-router"
+import { useNavigate } from "react-router"
+import { toast } from "react-toastify"
 
-const JobPage = () => {
+const JobPage = ({ deleteJob }) => {
   const { id } = useParams()
   const job = useLoaderData()
+  const navigate = useNavigate()
+
+  const handleDelete = (jobId) => {
+    const confirmed = window.confirm(
+      "esta seguro que desea borrar este empleo?"
+    );
+
+    if (!confirmed) return
+
+    deleteJob(jobId)
+
+    toast.success("Job eliminado correctamente")
+
+    navigate("/jobs")
+  }
   
 return (
      <>
@@ -35,7 +52,7 @@ return (
                    className="text-organe-700 mb-4 flex align-middle justify-center 
                    md:justify-start"
                   >
-                    <HiLocation className= "text-orange-700 mr-1"/>
+                    <HiLocationMarker className= "text-orange-700 mr-1"/>
                     <p className="text-orange-700">{ job.location }</p>
                   </div>
                 </div>
@@ -84,11 +101,11 @@ return (
                 <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                   <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                   <Link
-                    to= { `/jobs/edit/${job.id}` }
+                    to= { `/edit-job/${job.id}` }
                    className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                     >Edit Job
                   </Link>
-                  <button
+                  <button onClick={() => handleDelete( job.id ) }
                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                   >
                     Delete Job
